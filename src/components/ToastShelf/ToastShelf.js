@@ -4,23 +4,23 @@ import { ToastContext } from '../ToastProvider';
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
 
-function ToastShelf({ handleDismiss }) {
+function ToastShelf() {
 
   const { toasts } = React.useContext(ToastContext);
 
-  React.useEffect(() => {
-    console.log(toasts)
-  }, [toasts])
-
   return (
-    <ol className={styles.wrapper}>
+    <ol
+      className={styles.wrapper}
+      role='region'
+      aria-live='polite'
+      aria-label='Notification'
+    >
       {
         toasts.map(({message, variant, id}) => (
           <Toast
             key={id}
             id={id}
             variant={variant}
-            handleDismiss={handleDismiss}
           >
             {message}
           </Toast>
